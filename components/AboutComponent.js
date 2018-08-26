@@ -26,7 +26,7 @@ class About extends Component {
                     subtitle={item.description}
                     subtitleNumberOfLines={null}
                     hideChevron={true}
-                    leftAvatar={{ source: require('./images/alberto.png')}}
+                    avatar={{ source: require('./images/alberto.png')}}
                 />
             );
         };
