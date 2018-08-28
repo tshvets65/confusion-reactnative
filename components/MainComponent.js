@@ -180,7 +180,20 @@ const MainNavigator = createDrawerNavigator({
         )
       }, 
     },
-    
+    Contact: 
+    { screen: ContactNavigator,
+      navigationOptions: {
+        title: 'Contact Us',
+        drawerLabel: 'Contact Us',
+        drawerIcon: ({ tintColor }) => (
+          <Icon name='address-card'
+            type='font-awesome'
+            size={22}
+            color={tintColor}
+            />
+        )
+      }, 
+    },
     Reservation: 
     { screen: ReservationNavigator,
       navigationOptions: {
