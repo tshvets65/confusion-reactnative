@@ -41,7 +41,7 @@ class About extends Component {
                     subtitle={item.description}
                     NumberOfLines={15}
                     hideChevron={true}
-                    leftAvatar={{source: {uri: baseUrl + item.image}}}
+                    avatar={{source: {uri: baseUrl + item.image}}}
                 />
             );
         };
