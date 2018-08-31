@@ -35,13 +35,12 @@ class About extends Component {
         const renderLeader = ({item, index}) => {
             return (
                 <ListItem
-                    roundAvatar
                     key={index}
                     title={item.name}
                     subtitle={item.description}
                     NumberOfLines={15}
                     hideChevron={true}
-                    avatar={{source: {uri: baseUrl + item.image}}}
+                    leftAvatar={{ source: {uri: baseUrl + item.image}}}
                 />
             );
         };
