@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, FlatList, Modal, StyleSheet, Button, Alert, PanResponder } from 'react-native';
+import { Text, View, ScrollView, FlatList, Modal, StyleSheet, Button, Alert, PanResponder, Share } from 'react-native';
 import { Card, Icon, Rating, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -64,9 +64,19 @@ function RenderDish(props) {
             return true;
         }
     });
+
+    const shareDish = (title, message, url) => {
+        Share.share({
+            title: title,
+            message: title + ': ' + message + ' ' + url,
+            url: url
+        },{
+            dialogTitle: 'Share ' + title
+        })
+    }
     
-        if (dish != null) {
-            return(
+    if (dish != null) {
+        return(
                 <Animatable.View animation="fadeInDown" duration={2000} delay={1000}
                     ref={this.handleViewRef}
                     {...panResponder.panHandlers}>
@@ -94,14 +104,21 @@ function RenderDish(props) {
                             color='#512DA8'
                             onPress={() => { props.showModal()}}
                             />
+                        <Icon
+                            raised
+                            reverse
+                            name='share'
+                            type='font-awesome'
+                            color='#51D2A8'
+                            onPress={() => shareDish(dish.name, dish.description, baseUrl + dish.image)} />
                         </View>    
                     </Card>
                 </Animatable.View>
-            );
-        }
-        else {
-            return(<View></View>);
-        }
+        );
+    }
+     else {
+        return(<View></View>);
+    }
 }
 
 function RenderComments(props) {
@@ -117,7 +134,7 @@ function RenderComments(props) {
                     imageSize={15}
                     style={{ paddingVertical: 5 }}
                 />
-                <Text style={{fontSize: 12}}>{'--' + item.author + ', ' + new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(item.date)))}</Text>
+                <Text style={{fontSize: 12}}>{'--' + item.author + ', ' + item.date}</Text>
             </View>
         );
     };
